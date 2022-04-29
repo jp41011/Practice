@@ -1,6 +1,6 @@
 all: day10
 
-day10: day10_BinaryNumber.cpp
-	g++ day10_BinaryNumber.cpp -o run
+day10: day10_BinaryNumbers.cpp
+	g++ day10_BinaryNumbers.cpp -o run
 
 	
