@@ -21,6 +21,10 @@ class Person{
 	
 };
 
+/*
+link: https://www.hackerrank.com/challenges/30-inheritance/problem?isFullScreen=false
+*/
+
 class Student :  public Person{
 	private:
 		vector<int> testScores;  
@@ -35,12 +39,65 @@ class Student :  public Person{
         *   scores - An array of integers denoting the Person's test scores.
         */
         // Write your constructor here
+		Student(string firstName, string lastName, int id, vector<int> scores) : Person(firstName, lastName, id)
+		{
+			//(*this).firstName = firstName;
+			//this->lastName = lastName;
+			//this->id = id;
+			this->testScores = scores;
+			return;
+		}
 
         /*	
         *   Function Name: calculate
         *   Return: A character denoting the grade.
         */
         // Write your function here
+		char calculate()
+		{
+			float average = calculateAverage();
+			char letterGrade = getLetterGrade(average);
+			return letterGrade;
+		}
+
+		float calculateAverage()
+		{
+			float sum = 0;
+			for(int i=0; i<testScores.size(); i++)
+				sum+= testScores[i];
+
+			float average = sum / (float)testScores.size();
+			//cout << "Average: " << average << endl; // testing
+			return average;
+		}
+
+		char getLetterGrade(float score)
+		{
+			if(90 <= score && score <= 100)
+				return 'O';
+			else if(80 <= score && score < 90)
+				return 'E';
+			else if(70 <= score && score < 80)
+				return 'A';
+			else if(55 <= score && score < 70)
+				return 'P';
+			else if(40 <= score && score < 55)
+				return 'D';
+			else if(score < 40)
+				return 'T';
+			else
+				return 'X'; // Error
+		}
+
+		void printScores()
+		{
+			cout << "Scores: ";
+			for(int i=0; i < testScores.size(); i++)
+			{
+				cout << testScores[i] << " ";
+			}
+			cout << endl;
+		}
 };
 
 int main() {
@@ -58,5 +115,7 @@ int main() {
 	Student* s = new Student(firstName, lastName, id, scores);
 	s->printPerson();
 	cout << "Grade: " << s->calculate() << "\n";
+
+	//(*s).printScores();
 	return 0;
 }
