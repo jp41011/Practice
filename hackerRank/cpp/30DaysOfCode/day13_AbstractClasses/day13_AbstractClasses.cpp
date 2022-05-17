@@ -19,22 +19,26 @@ class Book{
 };
 
 // Write your MyBook class here
+class MyBook: Book{
+	protected: 
+	int price;
 
-    //   Class Constructor
-    //   
-    //   Parameters:
-    //   title - The book's title.
-    //   author - The book's author.
-    //   price - The book's price.
-    //
-    // Write your constructor here
-    
-    
-    //   Function Name: display
-    //   Print the title, author, and price in the specified format.
-    //
-    // Write your method here
-    
+	public:
+		MyBook(string title, string author, int price) : Book(title, author)
+		{
+			// could also set the price before the constructor body
+			// and after the Book() constructor call.
+			this->price = price;
+		}
+
+		void display()
+		{
+			cout << "Title: " << this->title << endl;
+			cout << "Author: " << this->author << endl;
+			cout << "Price: " << this->price << endl;
+			return;
+		}
+};
 // End class
 
 int main() {
